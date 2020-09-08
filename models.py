@@ -1,3 +1,12 @@
+class Admin(models.Model):
+	u_id=models.IntegerField()
+	username=models.CharField(max_length=255)
+	useremail=models.CharField(max_length=255)
+	userpassword=models.CharField(max_length=255)
+	userpassword_md5=models.CharField(max_length=255)
+	user_status=models.IntegerField()
+	area_permission=models.CharField(max_length=255)
+
 class Batch(models.Model):
 	b_id=models.IntegerField()
 	batch_name=models.CharField(max_length=255)
@@ -105,7 +114,60 @@ class Practice_exam_status(models.Model):
 	
 	
 
-				     
+class Question(models.Model):
+	q_id=models.IntegerField()
+	question=models.CharField(max_length=255)
+	typeofquestion=models.CharField(max_length=255)
+	option_a=models.CharField(max_length=255)
+	option_b=models.CharField(max_length=255)
+	option_c=models.CharField(max_length=255)
+	option_d=models.CharField(max_length=255)
+	correct_ans=models.CharField(max_length=255)
+	question_status=models.IntegerField(max_length=2)
+	marks=models.IntegerField()
+	subject_id=models.ForeignKey(Subject,on_delete=models.CASCADE,related_name="question1")
+	category_id=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="question2")
+	subcategory_id=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="question3")
+	
+
+class main_answer(models.Model):
+	m_a_id=models.IntegerField()
+	ans=models.CharField(max_length=255)
+	marks=models.IntegerField()
+	category_id=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="answer1")
+	subcategory_id=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="answer2")
+	subject_id=models.ForeignKey(Subject,on_delete=models.CASCADE,related_name="aswer3")
+	exam_id=models.ForeignKey(Exam,on_delete=models.CASCADE,related_name="answer4")
+	question_id=models.ForeignKey(Question,on_delete=models.CASCADE,related_name="answer5")
+	student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="answer6")
+
+
+class Practice_question(models.Model):
+	p_q_id=models.IntegerField()
+	question=models.CharField(max_length=255)
+	typeofquestion=models.CharField(max_length=255)
+	option_a=models.CharField(max_length=255)
+	option_b=models.CharField(max_length=255)
+	option_c=models.CharField(max_length=255)
+	option_d=models.CharField(max_length=255)
+	correct_ans=models.CharField(max_length=255)
+	question_status=models.IntegerField(max_length=2)
+	marks=models.IntegerField()
+	p_e_id=models.ForeignKey(Practice_exam,on_delete=models.CASCADE,related_name="pquestion")
+
+class Practice_answer(models.Model):
+	p_a_id=models.IntegerField()
+	ans=models.CharField(max_length=255)
+	marks=models.IntegerField()
+	examdate=models.DateField()
+	correct_ans=models.CharField(max_length=255)
+	typeofquestion=models.CharField(max_length=255)
+	exam_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="panswer1")
+	question_id=models.ForeignKey(Question,on_delete=models.CASCADE,related_name="panswer2")
+	student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="panswer3")
+
+
+
 
 
 
