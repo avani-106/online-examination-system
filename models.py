@@ -130,7 +130,7 @@ class Question(models.Model):
 	subcategory_id=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="question3")
 	
 
-class main_answer(models.Model):
+class Main_answer(models.Model):
 	m_a_id=models.IntegerField()
 	ans=models.CharField(max_length=255)
 	marks=models.IntegerField()
