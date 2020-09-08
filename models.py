@@ -165,6 +165,41 @@ class Practice_answer(models.Model):
 	exam_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="panswer1")
 	question_id=models.ForeignKey(Question,on_delete=models.CASCADE,related_name="panswer2")
 	student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="panswer3")
+	
+class Notice(models.Model):
+	n_id=models.IntegerField()
+	notice=models.TextField()
+	notice_subject=models.CharField(max_length=255)
+	notice_date=models.DateField()
+	status=models.IntegerField()     
+    
+class Noticestudent(models.Model):
+    ns_id=models.IntegerField()
+    student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="Noticestudent")
+    notice_id=models.ForeignKey(Notice,on_delete=models.CASCADE,related_name="Notice1")
+    center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="Noticecenter1")
+    notice_date=models.DateField()
+    
+class Noticecenter(models.Model):
+    nc_id=models.IntegerField() 
+    center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="Noticecenter1") 
+    notice_id=models.ForeignKey(Notice,on_delete=models.CASCADE,related_name="Notice1") 
+    notice_date=models.models.DateField()
+    
+class Practice_exam_status(models.Model):
+    id=models.IntegerField()
+    exam_id=models.ForeignKey(Exam,on_delete=models.CASCADE,related_name="practice_status")   
+    status=models.IntegerField()
+    starttime=models.CharField(max_length=255) 
+    endtime=models.CharField(max_length=255)
+    student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="studentid")
+    noofattempts=models.IntegerField()
+    pass_or_fail=models.CharField(max_length=255)
+    user_score=models.DecimalField()
+    passing_score=models.DecimalField()
+    total_score=models.DecimalField()
+    total_question=models.IntegerField()    
+    negative_mark=models.IntegerField()
 
 
 
