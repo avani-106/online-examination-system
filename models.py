@@ -63,10 +63,10 @@ class Exam(models.Model):
 	result_show_on_mail=models.IntegerField()
 	show_question=models.CharField(max_length=255)
 	sort_order=models.CharField(max_length=255)
-	categoryid=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="exam1")
-	subcategoryid=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="exam2")
-	subjectid=models.ForeignKey(Subject,on_delete=models.CASCADE,related_name="exam3")
-	centerid=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="exam4")
+	category_id=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="exam1")
+	subcategory_id=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="exam2")
+	subject_id=models.ForeignKey(Subject,on_delete=models.CASCADE,related_name="exam3")
+	center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="exam4")
 	
 class Practice_exam(models.Model):
 	p_e_id=models.IntegerField()
@@ -78,10 +78,10 @@ class Practice_exam(models.Model):
 	neg_mark_status=models.IntegerField()
 	negative_marks=models.IntegerField()
 	terms_condition=models.TextField()
-	category=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="pexam1")
-	subcategory=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="pexam2")
-	center=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="pexam3")
-	subjects=models.ForeignKey(Subject,on_delete=models.CASCADE,related_name="pexam4")
+	category_id=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="pexam1")
+	subcategory_id=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="pexam2")
+	center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="pexam3")
+	subjects_id=models.ForeignKey(Subject,on_delete=models.CASCADE,related_name="pexam4")
 	
 	
 class Student(models.Model):
@@ -96,10 +96,10 @@ class Student(models.Model):
 	user_name=models.CharField(max_length=255)
 	password=models.CharField(max_length=255)
 	student_status=models.IntegerField()
-	categorys=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="student1")
-	subcategorys=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="student2")
-	centers=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="student3")
-	batch=models.ForeignKey(Batch,on_delete=models.CASCADE,related_name="student4")
+	category_id=models.ForeignKey(Category,on_delete=models.CASCADE,related_name="student1")
+	subcategory_id=models.ForeignKey(Subcategory,on_delete=models.CASCADE,related_name="student2")
+	center_id=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="student3")
+	b_id=models.ForeignKey(Batch,on_delete=models.CASCADE,related_name="student4")
 	
 class Practice_exam_status(models.Model):
 	pid=models.IntegerField()
@@ -109,8 +109,8 @@ class Practice_exam_status(models.Model):
 	endtime=models.CharField(max_length=255)
 	noofattempts=models.IntegerField(max_length=255)
 	pass_or_fail=models.CharField(max_length=255)
-	students=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="practice")
-	exams=models.ForeignKey(Exam,on_delete=models.CASCADE,related_name="practice2")
+	student_id=models.ForeignKey(Student,on_delete=models.CASCADE,related_name="practice")
+	exams_id=models.ForeignKey(Exam,on_delete=models.CASCADE,related_name="practice2")
 	
 	
 
