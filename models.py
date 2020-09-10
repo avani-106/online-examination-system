@@ -92,7 +92,7 @@ class Student(models.Model):
 	centers=models.ForeignKey(Center,on_delete=models.CASCADE,related_name="student3")
 	batch=models.ForeignKey(Batch,on_delete=models.CASCADE,related_name="student4")
 	
-class Practice_exam_status(models.Model):
+class Main_exam_status(models.Model):
 	pid=models.IntegerField()
 	exam_date=models.DateField()
 	status=models.IntegerField()
